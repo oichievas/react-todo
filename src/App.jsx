@@ -2,6 +2,8 @@ import React from 'react'
 import Form from './components/Form'
 import './App.css'
 import { idGenerator } from './helpers'
+import Authorization from './components/Authorization'
+import Registration from './components/Registration'
 
 function App() {
   const [todos, setTodos] = React.useState([])
@@ -100,7 +102,8 @@ function App() {
           </div>
         </ul>
       </div>
-      
+      <Authorization />
+      <Registration />
     </div>
   )
 }

@@ -1,0 +1,26 @@
+.authorization  {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.auth_form {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  width: 300px;
+  display: block;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  width: 300px;
+  padding: 10px;
+  font-size: 18px;
+  background-color: green;
+  color: white;
+}
