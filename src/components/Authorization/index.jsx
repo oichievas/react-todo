@@ -2,7 +2,7 @@ import React from 'react'
 import './index.css'
 
 const Authorization = () => {
-  console.log("Hello world");
+  console.log("Hello urmat");
   return (
     <div className="authorization">
       <h2>Authorization</h2>
