@@ -1,7 +1,6 @@
 import React from 'react'
 import Form from './components/Form'
 import './App.css'
-import Test from './components/Test'
 import { idGenerator } from './helpers'
 
 function App() {
@@ -101,8 +100,7 @@ function App() {
           </div>
         </ul>
       </div>
-
-      <Test />
+      
     </div>
   )
 }
