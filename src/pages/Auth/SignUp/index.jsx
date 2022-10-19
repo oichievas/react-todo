@@ -1,21 +1,22 @@
 import React from 'react'
-import './index.css'
+import Button from 'components/Button';
+import cls from './index.module.css'
 
-const Registration = () => {
+const SignUp = () => {
   return (
-    <div className='registration'>
-      <h2>Registration</h2>
-      <div className='registration_form'>
+    <div className= {cls.registration}>
+      <h2>Sign Up</h2>
+      <div className={cls.registration_form}>
         <form>
             <input type="text" placeholder="Enter name" />
             <input type="email" placeholder="Enter email" />
             <input type="password" placeholder="Password" />
             <input type="password" placeholder="Password repeat" />
-          <button>Submit</button>
+          <Button>Submit</Button>
         </form>
       </div>
     </div>
   )
 }
 
-export default Registration;
+export default SignUp;

@@ -1,17 +1,24 @@
 import { useState } from 'react'
-import './Form.css'
+import cls from './Form.module.css'
 
 const Form = (props) => {
   const [value, setValue] = useState("")
 
   return (
-    <form className='form'
-      onSubmit={e => {
+    <form 
+      className={cls.form}
+      onSubmit={e => { 
       e.preventDefault()
-      props.putTodo(value)
+      props.createTodo(value)
       setValue("")
-    }}>
-      <input type="text" placeholder="Bведите текст" className="input" value={value} onChange={e => setValue(e.target.value)} />
+      }}
+    >
+      <input 
+        type="text" 
+        placeholder="Bведите текст" 
+        value={value} 
+        onChange={e => 
+          setValue(e.target.value)} />
     </form>
   )
 }
