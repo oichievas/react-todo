@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import React from 'react'
 import cls from './Form.module.css'
 
 const Form = ({ createTodo }) => {
-  const [value, setValue] = useState("")
+  const [value, setValue] = React.useState('')
 
   return (
     <form
@@ -16,9 +16,9 @@ const Form = ({ createTodo }) => {
     >
       <input
         placeholder="Bведите текст"
-        className={cls.input} 
-        value={value} 
-        onChange={e => setValue(e.target.value)} 
+        className={cls.input}
+        value={value}
+        onChange={e => setValue(e.target.value)}
       />
     </form>
   )

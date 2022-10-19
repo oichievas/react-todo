@@ -1,26 +1,23 @@
 import React from 'react'
 import { idGenerator } from 'helpers'
+import { useNavigate } from 'react-router-dom'
 
 export const useMain = () => {
   const [todos, setTodos] = React.useState([])
   const [allComplete, setAllComplete] = React.useState(0)
-
-React.useEffect(() => {
-    const storageTodos = JSON.parse(localStorage.getItem('todo list'));
-
-    if (storageTodos) {
-        setTodos(storageTodos)
-    }
-}, []);
+  const navigate = useNavigate()
 
   React.useEffect(() => {
-    localStorage.setItem('todo list', JSON.stringify(todos))
-    console.log(todos)
-  }, [todos]);
+    const storageTodos = JSON.parse(localStorage.getItem('todos'))
+
+    storageTodos && setTodos(storageTodos)
+  }, [])
 
   React.useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+
     setAllComplete(
-      todos.reduce((prev, current) => current.done ? prev + 1 : prev, 0)
+      todos.reduce((prev, current) => current.done ? prev + 1 : prev, 0),
     )
   }, [todos])
 
@@ -31,7 +28,7 @@ React.useEffect(() => {
 
     if (text.length > 100) return alert('Текст должен быть меньше 100 символов')
 
-    setTodos(prev => [...prev, { 
+    setTodos(prev => [...prev, {
       id: idGenerator(prev),
       text,
       done: false,
@@ -45,12 +42,12 @@ React.useEffect(() => {
 
         return {
           ...todo,
-          done: !todo.done
+          done: !todo.done,
         }
       })
     })
   }
-  
+
   const removeTodo = (id) => {
     setTodos(prev => prev.filter(todo => todo.id !== id))
   }
@@ -62,10 +59,16 @@ React.useEffect(() => {
 
         return {
           ...todo,
-          text: prompt('Изменить текст', todo.text)
+          text: prompt('Изменить текст', todo.text) || todo.text,
         }
       })
     })
+  }
+
+  const signOut = () => {
+    localStorage.removeItem('uid')
+
+    navigate('/auth/signin')
   }
 
   return {
@@ -76,6 +79,7 @@ React.useEffect(() => {
       completeTodo,
       editTodo,
       removeTodo,
-    }
+      signOut,
+    },
   }
 }

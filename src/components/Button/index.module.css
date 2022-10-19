@@ -8,3 +8,8 @@
   cursor: pointer;
   border-radius: 6px;
 }
+
+.root:disabled {
+  background-color: rgb(141, 211, 141);
+  cursor: no-drop;
+}

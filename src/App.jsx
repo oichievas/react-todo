@@ -1,3 +1,4 @@
+import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { NotFound } from './components/NotFound'
 import { AuthLayout } from './pages/Auth/AuthLayout'
