@@ -5,6 +5,19 @@ export const useMain = () => {
   const [todos, setTodos] = React.useState([])
   const [allComplete, setAllComplete] = React.useState(0)
 
+React.useEffect(() => {
+    const storageTodos = JSON.parse(localStorage.getItem('todo list'));
+
+    if (storageTodos) {
+        setTodos(storageTodos)
+    }
+}, []);
+
+  React.useEffect(() => {
+    localStorage.setItem('todo list', JSON.stringify(todos))
+    console.log(todos)
+  }, [todos]);
+
   React.useEffect(() => {
     setAllComplete(
       todos.reduce((prev, current) => current.done ? prev + 1 : prev, 0)
