@@ -60,11 +60,11 @@ export const MainPage = () => {
               )
             })
           }
-          <div className={cls.info}>
-            <span>Todos count: {todos.length} </span>
-            <span>Completed: {allComplete} </span>
-          </div>
         </ul>
+        <div className={cls.info}>
+          <span>Todos count: {todos.length} </span>
+          <span>Completed: {allComplete} </span>
+        </div>
       </div>
     </div>
   )

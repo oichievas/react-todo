@@ -51,9 +51,11 @@ const useMain = () => {
   }
 
   const signOut = () => {
-    localStorage.removeItem('uid')
-
-    navigate('/auth/signin')
+    const signOut = confirm('Вы уверены сделать выход?')
+    if (signOut) {
+      localStorage.removeItem('uid')
+      navigate('/auth/signin')
+    }
   }
 
   React.useEffect(() => {
