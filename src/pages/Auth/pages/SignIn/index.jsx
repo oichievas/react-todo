@@ -22,6 +22,11 @@ const SignIn = () => {
     signIn()
   }
 
+  const signUp = (e) => {
+    e.preventDefault()
+    navigate('/auth/signup')
+  }
+
   return (
     <div className={cls.authorization}>
       <h2>Sign In</h2>
@@ -56,6 +61,10 @@ const SignIn = () => {
             disabled={isLoading}
             onClick={onSubmit}
           >Submit</Button>
+          <div>
+            <p>Если у вас нет, аккаунта</p>
+            <button onClick={signUp}>Sign Up</button>
+          </div>
         </form>
       </div>
     </div>
