@@ -56,6 +56,10 @@ const SignUp = () => {
             disabled={isLoading}
             onClick={onSubmit}
           >Submit</Button>
+          <div>
+            <p>Если у вас есть аккаунт</p>
+            <button onClick={signUp}>Sign In</button>
+          </div>
         </form>
       </div>
     </div>

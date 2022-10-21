@@ -2,6 +2,9 @@ import React from 'react'
 import { Button } from 'components/Button'
 import cls from './index.module.css'
 import { Auth } from '..'
+import { Link, Route } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
 
 const SignIn = () => {
   const {
@@ -20,6 +23,11 @@ const SignIn = () => {
     e.preventDefault()
 
     signIn()
+  }
+
+  const signUp = (e) => {
+    e.preventDefault()
+    navigate('/auth/signup')
   }
 
   return (
@@ -56,6 +64,10 @@ const SignIn = () => {
             disabled={isLoading}
             onClick={onSubmit}
           >Submit</Button>
+          <div>
+            <p>Если у вас нет, аккаунта</p>
+            <button onClick={signUp}>Sign Up</button>
+          </div>
         </form>
       </div>
     </div>

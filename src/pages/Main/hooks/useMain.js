@@ -26,7 +26,7 @@ export const useMain = () => {
 
     if (text.length < 5) return alert('Текст должен быть более 4 символов')
 
-    if (text.length > 100) return alert('Текст должен быть меньше 100 символов')
+    if (text.length > 20) return alert('Текст должен быть меньше 20 символов')
 
     setTodos(prev => [...prev, {
       id: idGenerator(prev),
@@ -66,9 +66,11 @@ export const useMain = () => {
   }
 
   const signOut = () => {
-    localStorage.removeItem('uid')
-
-    navigate('/auth/signin')
+    const signOut = confirm('Вы уверены сделать выход?')
+    if (signOut) {
+      localStorage.removeItem('uid')
+      navigate('/auth/signin')
+    }
   }
 
   return {

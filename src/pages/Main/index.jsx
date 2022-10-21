@@ -23,8 +23,9 @@ export const MainPage = () => {
 
   return (
     <div className={cls.wrapper}>
-      <button onClick={signOut}>Sign out</button>
-
+      <div className={cls.signOut}>
+        <button onClick={signOut}>Sign out</button>
+      </div>
       <div className={cls.container}>
         <h1 className={cls.title}>TodoList</h1>
         <Form
@@ -63,11 +64,11 @@ export const MainPage = () => {
               )
             })
           }
-          <div className={cls.info}>
-            <span>Todos count: {todos.length} </span>
-            <span>Completed: {allComplete} </span>
-          </div>
         </ul>
+        <div className={cls.info}>
+          <span>Todos count: {todos.length} </span>
+          <span>Completed: {allComplete} </span>
+        </div>
       </div>
     </div>
   )
