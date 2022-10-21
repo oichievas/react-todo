@@ -2,6 +2,12 @@ import React from 'react'
 import { Main } from '..'
 
 const useTodoForm = () => {
+  const {
+    actions: {
+      getTodos,
+    },
+  } = Main.Hooks.MainPage.use()
+
   const uid = localStorage.getItem('uid')
 
   const [text, setText] = React.useState('')
@@ -24,10 +30,8 @@ const useTodoForm = () => {
     setIsLoading(true)
 
     request
-      .then(res => {
-        const data = res.data
-
-        console.log(data)
+      .then(() => {
+        getTodos()
       })
       .finally(() => {
         setIsLoading(false)

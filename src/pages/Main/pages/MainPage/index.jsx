@@ -1,4 +1,5 @@
 import { NotAuth } from 'components/NotAuth'
+import { Spinner } from 'components/Spinner'
 import { Main } from 'pages/Main'
 import React from 'react'
 import Form from '../../components/Form'
@@ -9,6 +10,7 @@ export const MainPage = () => {
   const {
     todos,
     allComplete,
+    isLoading,
     actions: {
       completeTodo,
       editTodo,
@@ -29,36 +31,38 @@ export const MainPage = () => {
         <Form />
         <ul className={cls.todos}>
           {
-            todos.map(todo => {
-              return (
-                <li
-                  className={todo.done ? `${cls.todo} ${cls.done}` : cls.todo}
-                  key={todo.id}
-                  onClick = {() => completeTodo(todo.id)}
-                >
-                  {todo.text}
-                  <div className={cls.icons}>
-                    <img
-                      src="https://cdn-icons-png.flaticon.com/512/274/274713.png"
-                      alt="edit"
-                      onClick={e => {
-                        e.stopPropagation()
-                        editTodo(todo.id)
-                      }}
-                    />
+            isLoading ?
+              <Spinner /> :
+              todos.map(todo => {
+                return (
+                  <li
+                    className={todo.done ? `${cls.todo} ${cls.done}` : cls.todo}
+                    key={todo.id}
+                    onClick = {() => completeTodo(todo.id)}
+                  >
+                    {todo.text}
+                    <div className={cls.icons}>
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/512/274/274713.png"
+                        alt="edit"
+                        onClick={e => {
+                          e.stopPropagation()
+                          editTodo(todo.id)
+                        }}
+                      />
 
-                    <img
-                      src="https://cdn-icons-png.flaticon.com/512/6861/6861362.png"
-                      alt="delete"
-                      onClick={e => {
-                        e.stopPropagation()
-                        removeTodo(todo.id)
-                      }}
-                    />
-                  </div>
-                </li>
-              )
-            })
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/512/6861/6861362.png"
+                        alt="delete"
+                        onClick={e => {
+                          e.stopPropagation()
+                          removeTodo(todo.id)
+                        }}
+                      />
+                    </div>
+                  </li>
+                )
+              })
           }
           <div className={cls.info}>
             <span>Todos count: {todos.length} </span>

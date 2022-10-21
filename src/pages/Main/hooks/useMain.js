@@ -1,3 +1,4 @@
+import { parseObjToArr } from 'helpers'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Main } from '..'
@@ -7,17 +8,22 @@ const useMain = () => {
   const [allComplete, setAllComplete] = React.useState(0)
   const navigate = useNavigate()
 
+  const [isLoading, setIsLoading] = React.useState(false)
+
   const uid = localStorage.getItem('uid')
 
   const getTodos = () => {
     const request = Main.API.getTodos(uid)
 
+    setIsLoading(true)
+
     request
       .then(res => {
         const data = res.data
 
-        console.log(data)
+        setTodos(parseObjToArr(data))
       })
+      .finally(() => setIsLoading(false))
   }
 
   const completeTodo = (id) => {
@@ -57,14 +63,10 @@ const useMain = () => {
   }
 
   React.useEffect(() => {
-    const storageTodos = JSON.parse(localStorage.getItem('todos'))
-
-    storageTodos && setTodos(storageTodos)
+    getTodos()
   }, [])
 
   React.useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos))
-
     setAllComplete(
       todos.reduce((prev, current) => current.done ? prev + 1 : prev, 0),
     )
@@ -73,11 +75,13 @@ const useMain = () => {
   return {
     todos,
     allComplete,
+    isLoading,
     actions: {
       completeTodo,
       editTodo,
       removeTodo,
       signOut,
+      getTodos,
     },
   }
 }
