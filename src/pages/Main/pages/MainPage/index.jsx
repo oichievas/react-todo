@@ -1,7 +1,8 @@
 import { NotAuth } from 'components/NotAuth'
+import { Main } from 'pages/Main'
 import React from 'react'
-import Form from './components/Form'
-import { useMain } from './hooks/useMain'
+import Form from '../../components/Form'
+import { Navbar } from '../../components/Navbar'
 import cls from './Main.module.css'
 
 export const MainPage = () => {
@@ -9,27 +10,23 @@ export const MainPage = () => {
     todos,
     allComplete,
     actions: {
-      createTodo,
       completeTodo,
       editTodo,
       removeTodo,
       signOut,
     },
-  } = useMain()
+  } = Main.Hooks.MainPage.use()
 
   const uid = localStorage.getItem('uid')
 
   if (!uid) return <NotAuth />
 
   return (
-    <div className={cls.wrapper}>
-      <button onClick={signOut}>Sign out</button>
-
+    <div className={cls.root}>
+      <Navbar signOut={signOut} />
       <div className={cls.container}>
         <h1 className={cls.title}>TodoList</h1>
-        <Form
-          createTodo={createTodo}
-        />
+        <Form />
         <ul className={cls.todos}>
           {
             todos.map(todo => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from 'components/Button'
 import cls from './index.module.css'
-import { Auth } from '..'
+import { Auth } from '../..'
 
 const SignUp = () => {
   const {

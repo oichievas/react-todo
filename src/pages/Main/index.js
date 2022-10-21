@@ -1,9 +1,7 @@
 import * as API from './api'
 import { Hooks } from './hooks'
-import { Pages } from './pages'
 
-export const Auth = {
+export const Main = {
   API,
   Hooks,
-  Pages,
 }

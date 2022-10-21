@@ -1,38 +1,23 @@
 import React from 'react'
-import { idGenerator } from 'helpers'
 import { useNavigate } from 'react-router-dom'
+import { Main } from '..'
 
-export const useMain = () => {
+const useMain = () => {
   const [todos, setTodos] = React.useState([])
   const [allComplete, setAllComplete] = React.useState(0)
   const navigate = useNavigate()
 
-  React.useEffect(() => {
-    const storageTodos = JSON.parse(localStorage.getItem('todos'))
+  const uid = localStorage.getItem('uid')
 
-    storageTodos && setTodos(storageTodos)
-  }, [])
+  const getTodos = () => {
+    const request = Main.API.getTodos(uid)
 
-  React.useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos))
+    request
+      .then(res => {
+        const data = res.data
 
-    setAllComplete(
-      todos.reduce((prev, current) => current.done ? prev + 1 : prev, 0),
-    )
-  }, [todos])
-
-  const createTodo = (text) => {
-    if (!text) return alert('Введите текст!')
-
-    if (text.length < 5) return alert('Текст должен быть более 4 символов')
-
-    if (text.length > 100) return alert('Текст должен быть меньше 100 символов')
-
-    setTodos(prev => [...prev, {
-      id: idGenerator(prev),
-      text,
-      done: false,
-    }])
+        console.log(data)
+      })
   }
 
   const completeTodo = (id) => {
@@ -71,11 +56,24 @@ export const useMain = () => {
     navigate('/auth/signin')
   }
 
+  React.useEffect(() => {
+    const storageTodos = JSON.parse(localStorage.getItem('todos'))
+
+    storageTodos && setTodos(storageTodos)
+  }, [])
+
+  React.useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+
+    setAllComplete(
+      todos.reduce((prev, current) => current.done ? prev + 1 : prev, 0),
+    )
+  }, [todos])
+
   return {
     todos,
     allComplete,
     actions: {
-      createTodo,
       completeTodo,
       editTodo,
       removeTodo,
@@ -83,3 +81,5 @@ export const useMain = () => {
     },
   }
 }
+
+export const use = useMain

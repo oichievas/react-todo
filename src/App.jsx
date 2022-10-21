@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { NotFound } from './components/NotFound'
 import { AuthLayout } from './pages/Auth/AuthLayout'
-import MainPage from './pages/Main'
+import MainPage from './pages/Main/pages/MainPage'
 
 function App() {
   return (

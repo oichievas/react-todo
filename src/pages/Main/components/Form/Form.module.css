@@ -7,3 +7,6 @@ input{
   border-radius: 5px;
 }
 
+input:disabled {
+  border-color: #ccc;
+}

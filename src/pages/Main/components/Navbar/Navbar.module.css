@@ -1,0 +1,25 @@
+.root {
+  padding: 1rem;
+  background-color: #6bff;
+  display: flex;
+  justify-content: end;
+}
+
+.root button {
+  display: flex;
+  align-items: center;
+  padding: .5rem 1rem;
+  color: #fff;
+  background-color: black;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.root button:hover {
+  background-color: rgb(44, 43, 43);
+}
+
+.root button svg {
+  margin-right: .5rem;
+}

@@ -1,24 +1,31 @@
+import { Main } from 'pages/Main'
 import React from 'react'
 import cls from './Form.module.css'
 
-const Form = ({ createTodo }) => {
-  const [value, setValue] = React.useState('')
+const Form = () => {
+  const {
+    actions: {
+      createTodo,
+      setText,
+    },
+    text,
+    isLoading,
+  } = Main.Hooks.Form.use()
 
   return (
     <form
       className={cls.form}
       onSubmit={e => {
         e.preventDefault()
-
-        createTodo(value)
-        setValue('')
+        createTodo()
       }}
     >
       <input
+        disabled={isLoading}
         placeholder="Bведите текст"
         className={cls.input}
-        value={value}
-        onChange={e => setValue(e.target.value)}
+        value={text}
+        onChange={e => setText(e.target.value)}
       />
     </form>
   )
