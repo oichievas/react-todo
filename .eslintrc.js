@@ -18,7 +18,7 @@ module.exports = {
     'react',
   ],
   'rules': {
-    // 'linebreak-style': ['error', 'windows'],
+    'linebreak-style': 0,
     '@next/next/no-img-element': 'off',
     'react/display-name': 'off',
     'no-unused-vars': 'off',
