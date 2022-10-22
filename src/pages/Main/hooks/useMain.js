@@ -21,38 +21,54 @@ const useMain = () => {
       .then(res => {
         const data = res.data
 
-        setTodos(parseObjToArr(data))
+        if (!data) return setTodos([])
+
+        setTodos(parseObjToArr(data).reverse())
       })
       .finally(() => setIsLoading(false))
   }
 
   const completeTodo = (id) => {
-    setTodos(prev => {
-      return prev.map(todo => {
-        if (todo.id !== id) return todo
+    todos.forEach(todo => {
+      if (todo.id !== id) return
 
-        return {
-          ...todo,
-          done: !todo.done,
-        }
-      })
+      const body = {
+        done: !todo.done,
+      }
+
+      const request = Main.API.editTodo(uid, id, body)
+
+      request
+        .then(getTodos)
     })
   }
 
   const removeTodo = (id) => {
-    setTodos(prev => prev.filter(todo => todo.id !== id))
+    const askTodo = confirm('Вы действительно хотите удалить данную задачу?')
+
+    if (!askTodo) return
+
+    const request = Main.API.removeTodo(uid, id)
+
+    request
+      .then(getTodos)
   }
 
   const editTodo = (id) => {
-    setTodos(prev => {
-      return prev.map(todo => {
-        if (todo.id !== id) return todo
+    todos.forEach(todo => {
+      if (todo.id !== id) return
 
-        return {
-          ...todo,
-          text: prompt('Изменить текст', todo.text) || todo.text,
-        }
+      const askNewText = prompt('Изменить текст', todo.text)
+
+      if (!askNewText) return
+
+      const request = Main.API.editTodo(uid, id, {
+        text: askNewText,
+        isEdited: new Date().toISOString(),
       })
+
+      request
+        .then(getTodos)
     })
   }
 
@@ -62,9 +78,7 @@ const useMain = () => {
     navigate('/auth/signin')
   }
 
-  React.useEffect(() => {
-    getTodos()
-  }, [])
+  React.useEffect(getTodos, [])
 
   React.useEffect(() => {
     setAllComplete(

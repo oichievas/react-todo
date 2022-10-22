@@ -9,3 +9,11 @@ export const postTodo = (uid, body) => {
 export const getTodos = (uid) => {
   return axios.get(`${baseURL}/todos/${uid}.json`)
 }
+
+export const removeTodo = (uid, todoId) => {
+  return axios.delete(`${baseURL}/todos/${uid}/${todoId}.json`)
+}
+
+export const editTodo = (uid, todoId, body) => {
+  return axios.patch(`${baseURL}/todos/${uid}/${todoId}.json`, body)
+}
