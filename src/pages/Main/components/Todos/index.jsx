@@ -31,28 +31,28 @@ export const Todos = ({
               <li>
                 <div className={cls.todoText}>
                   <span>{text}</span>
-                  {/* <span className={cls.createdText}>
+                  <span className={cls.createdText}>
                         Создан &nbsp;
                     {new Date().toLocaleString()}
-                  </span> */}
+                  </span>
                   {
-                    isEdited ? (
-                      <span className={cls.editedText}>
-                        Изменен &nbsp;
-                        {new Date(isEdited).toLocaleString()}
-                      </span>
-                    ) : (
-                      <span className={cls.createdText}>
-                        Создан &nbsp;
-                        {new Date().toLocaleString()}
-                      </span>
-                    )
-                    //
-                    // isEdited &&
+                    // isEdited ? (
                     //   <span className={cls.editedText}>
                     //     Изменен &nbsp;
                     //     {new Date(isEdited).toLocaleString()}
                     //   </span>
+                    // ) : (
+                    //   <span className={cls.createdText}>
+                    //     Создан &nbsp;
+                    //     {new Date().toLocaleString()}
+                    //   </span>
+                    // )
+                    //
+                    isEdited &&
+                      <span className={cls.editedText}>
+                        Изменен &nbsp;
+                        {new Date(isEdited).toLocaleString()}
+                      </span>
                   }
                 </div>
                 <div className={cls.icons}>
