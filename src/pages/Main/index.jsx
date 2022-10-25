@@ -28,10 +28,10 @@ export const MainPage = () => {
       </div>
       <div className={cls.container}>
         <h1 className={cls.title}>TodoList</h1>
-        <Form
+        {/* <Form
           createTodo={createTodo}
-        />
-        <ul className={cls.todos}>
+        /> */}
+        {/* <ul className={cls.todos}>
           {
             todos.map(todo => {
               return (
@@ -64,11 +64,11 @@ export const MainPage = () => {
               )
             })
           }
-        </ul>
-        <div className={cls.info}>
+        </ul> */}
+        {/* <div className={cls.info}>
           <span>Todos count: {todos.length} </span>
           <span>Completed: {allComplete} </span>
-        </div>
+        </div> */}
       </div>
     </div>
   )

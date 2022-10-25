@@ -70,9 +70,19 @@
   flex-direction: column;
 }
 
+.todoText {
+  word-break: break-all;
+}
+
 .todoText .editedText{
   font-size: 14px;
   color: #ccc;
+  margin-top: .5rem;
+}
+
+.todoText .createdText {
+  font-size: 14px;
+  color: rgb(64, 74, 130);
   margin-top: .5rem;
 }
 

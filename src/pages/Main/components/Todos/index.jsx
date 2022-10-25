@@ -27,33 +27,48 @@ export const Todos = ({
       {
         todos.map(({ done, isEdited, id, text }) => {
           return (
-            <li
-              className={done ? `${cls.todo} ${cls.done}` : cls.todo}
-              key={id}
-            >
-              <div className={cls.todoText}>
-                <span>{text}</span>
-                {
-                  isEdited &&
+            <div key={id} className={done ? `${cls.todo} ${cls.done}` : cls.todo}>
+              <li>
+                <div className={cls.todoText}>
+                  <span>{text}</span>
+                  {/* <span className={cls.createdText}>
+                        Создан &nbsp;
+                    {new Date().toLocaleString()}
+                  </span> */}
+                  {
+                    isEdited ? (
                       <span className={cls.editedText}>
                         Изменен &nbsp;
                         {new Date(isEdited).toLocaleString()}
                       </span>
-                }
-              </div>
-              <div className={cls.icons}>
-                <AiOutlineCheck
-                  onClick={() => completeTodo(id)}
-                />
-                <AiOutlineEdit
-                  onClick={() => editTodo(id)}
-                />
+                    ) : (
+                      <span className={cls.createdText}>
+                        Создан &nbsp;
+                        {new Date().toLocaleString()}
+                      </span>
+                    )
+                    //
+                    // isEdited &&
+                    //   <span className={cls.editedText}>
+                    //     Изменен &nbsp;
+                    //     {new Date(isEdited).toLocaleString()}
+                    //   </span>
+                  }
+                </div>
+                <div className={cls.icons}>
+                  <AiOutlineCheck
+                    onClick={() => completeTodo(id)}
+                  />
+                  <AiOutlineEdit
+                    onClick={() => editTodo(id)}
+                  />
 
-                <AiOutlineDelete
-                  onClick={() => removeTodo(id)}
-                />
-              </div>
-            </li>
+                  <AiOutlineDelete
+                    onClick={() => removeTodo(id)}
+                  />
+                </div>
+              </li>
+            </div>
           )
         })
       }

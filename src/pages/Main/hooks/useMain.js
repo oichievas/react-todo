@@ -62,6 +62,9 @@ const useMain = () => {
 
       if (!askNewText) return
 
+      // if (todo.text.length < 5) return alert('Текст должен быть более 4 символов')
+      // if (todo.text.length > 100) return alert('Текст должен быть меньше 100 символов')
+
       const request = Main.API.editTodo(uid, id, {
         text: askNewText,
         isEdited: new Date().toISOString(),
